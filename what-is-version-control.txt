@@ -1,0 +1,9 @@
+Version Control is a system that tracks every change made on directories and files by developers which contributes to facilitate the collaborative work process for software development.
+The main benefit of using a Version Control System is maintaining a unified repository for team collaboration, so big teams or complexed projects become manageable by using Version Control System.
+An example of this kind of system is GIT, that is a distributed version control system, which means that each developer can keep a full copy of the work history project, make changes and merge them into the main project repository. For example, a developer may add a new function for a web application by creating this new function into the JavaScript file of that project. Once this developer finish his changings, he can commit his changes to the main project, so he added his contribution to the software development main project.
+Here are some Version Control command example, a GIT command:
+git init; this command initializes a new repository in GIT and starts to track the directory selected.
+git add; stages a change.
+git commit; saves the changes made.
+git branch; shows the local branches in the directory selected.
+And there are many other commands to perform management repository in a collaborative way.
