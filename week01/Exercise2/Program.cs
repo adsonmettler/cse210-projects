@@ -16,7 +16,7 @@ class Program
 
         if (grade >= 90)
         {
-            letter = "C";
+            letter = "A";
         }
         else if (grade >= 80)
         {
