@@ -1,0 +1,31 @@
+Author: Adson Mettler do Nascimento
+Course: Programming with Classes - C#
+Class: Week 02 - 2025-01-18
+
+Journal Program (design)
+
+Entry (Class)
+
+_date : string
+_promptText : string
+_entryText : string
+------------------------------------
+Display() : void
+
+
+Journal (Class)
+
+_entries : List<Entry>
+------------------------------------
+AddEntry(newEntry : Entry) : void
+DisplayAll() : void
+SaveTofile(file : string) : void
+LoadFromFile(file : string) : void
+
+
+PromptGenerator (Class)
+
+_prompts : List<string>
+-----------------------------------
+GetRandomPrompt() : string
+
