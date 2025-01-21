@@ -1,3 +1,10 @@
+
+// I have completed all the requirements of the program. Additionally,
+// as part of exceeding the requirements, I enhanced the user experience
+// to make the process smoother for the user. This includes adding
+// confirmation messages such as: 'Entry added successfully', 'Journal
+// saved to file: [file name]', and example of how to name the file.
+
 public class Journal
 {
     public List<Entry> _entries = new List<Entry>();
