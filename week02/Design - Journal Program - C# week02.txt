@@ -1,0 +1,61 @@
+Author: Adson Mettler do Nascimento
+Course: Programming with Classes - C#
+Class: Week 02 - 2025-01-18
+
+Journal Program (design)
+
+Entry (Class)
+
+_date : string
+_promptText : string
+_entryText : string
+------------------------------------
+Display() : void
+
+
+Journal (Class)
+
+_entries : List<Entry>
+------------------------------------
+AddEntry(newEntry : Entry) : void
+DisplayAll() : void
+SaveTofile(file : string) : void
+LoadFromFile(file : string) : void
+
+
+PromptGenerator (Class)
+
+_prompts : List<string>
+-----------------------------------
+GetRandomPrompt() : string
+
+
+
+Abstraction is the process of turning a complex idea into something simpler in terms of execution. One important advantage of applying abstraction in coding is creating a logical sequence of layers, making it easier to use the program.
+
+For example, in my Journal Program, because there are separate classes that communicate with the main program, I can allow the user to interact with complex methods like AddEntry, SaveToFile, and LoadFromFile without needing to know how these operations are implemented. The user only sees the following:
+
+From the Class Program:
+
+Enter the file name to save the journal (e.g., journal.txt): journal.txt  
+Journal saved to file: journal.txt
+
+Meanwhile, the implementation details are handled in a separate part of the program, organized within specific class structures, such as:
+
+
+From the Class Journal:
+
+public void SaveToFile(string file)
+{
+    using (System.IO.StreamWriter writer = new System.IO.StreamWriter(file))
+    {
+        foreach (Entry entry in _entries)
+        {
+            writer.WriteLine(entry._date);
+            writer.WriteLine(entry._promptText);
+            writer.WriteLine(entry._entryText);
+        }
+    }
+    Console.WriteLine($"Journal saved to file: {file}");
+}
+In the end, it becomes easier to build the logic for a menu option and provide the outputs based on the user's inputs. By abstracting these details, my program becomes easier to understand, maintain, and extend.
