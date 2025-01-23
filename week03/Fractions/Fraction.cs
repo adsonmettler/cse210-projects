@@ -22,13 +22,15 @@ public class Fraction
         _denominator = denominator;
     }
 
+    // Getter
     public string GetFractionString()
-        {
-            return $"{_numerator}/{_denominator}";
-        }
-
-        public double GetDecimalValue()
-        {
-            return (double)_numerator / _denominator;
-        }
+    {
+        return $"{_numerator}/{_denominator}";
+    }
+    
+    // Setter
+    public double GetDecimalValue()
+    {
+        return (double)_numerator / _denominator;
+    }
 }

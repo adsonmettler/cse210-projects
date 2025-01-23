@@ -1,0 +1,50 @@
+Design - Scripture Memorizer Program
+
+Author: Adson Mettler do Nascimento
+Course: Programming with Classes - C#
+Class: Week 03 Encapsulation - 2025-01-22
+
+
+Scripture Memorizer Program (Design)
+
+
+Scripture (Class)
+
+_reference : Reference
+_words : List<Word>
+-----------------------------------
+Scripture(Reference : Reference, text : string)
+
+HideRandomWords(numberToHide : int) : void
+GetDisplayText() : string
+IsCompletelyHidden() : bool
+
+
+Word (Class)
+
+_text : string
+_isHidden : bool
+-----------------------------------
+Word(text : string)
+
+Hide() : void
+Show() : void
+IsHidden() : bool
+GetDisplayText() : string
+
+
+
+Reference (Class)
+
+_book : string
+_chapter : int
+_verse : int
+_endVerse : int
+-----------------------------------
+Reference(book : string, chapter : int, verse : int)
+Reference(book : string, chapter : int, startVerse : int, endVerse : int)
+
+GetDisplayText() : string
+
+
+
