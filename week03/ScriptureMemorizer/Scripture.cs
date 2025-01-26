@@ -17,6 +17,7 @@ public class Scripture
         }
     }
 
+    // This method is to hide the amount of random words specified in the Main Program class.
     public void HideRandomWords(int numberToHide)
     {
         List<Word> visibleWords = _words.Where(word => !word.IsHidden()).ToList();

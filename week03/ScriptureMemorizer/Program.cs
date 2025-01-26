@@ -22,11 +22,11 @@ class Program
 
             if (scripture.IsCompletelyHidden())
             {
-                Console.WriteLine("\nAll words are hidden! Well done!");
+                Console.WriteLine("\nAll words are hidden! You memorized all. Well done!");
                 break;
             }
 
-            Console.WriteLine("\nPress Enter to hide 2 more words, or type 'quit' to exit.");
+            Console.WriteLine("\nPress enter to hide 2 more words, or type 'quit' to exit.");
             string userInput = Console.ReadLine()?.Trim().ToLower();
 
             if (userInput == "quit")

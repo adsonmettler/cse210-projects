@@ -1,0 +1,81 @@
+Design - Scripture Memorizer Program
+
+Author: Adson Mettler do Nascimento
+Course: Programming with Classes - C#
+Class: Week 03 Encapsulation - 2025-01-22
+
+
+Scripture Memorizer Program (Design)
+
+
+Scripture (Class)
+
+_reference : Reference
+_words : List<Word>
+-----------------------------------
+Scripture(Reference : Reference, text : string)
+
+HideRandomWords(numberToHide : int) : void
+GetDisplayText() : string
+IsCompletelyHidden() : bool
+
+
+Word (Class)
+
+_text : string
+_isHidden : bool
+-----------------------------------
+Word(text : string)
+
+Hide() : void
+Show() : void
+IsHidden() : bool
+GetDisplayText() : string
+
+
+
+Reference (Class)
+
+_book : string
+_chapter : int
+_verse : int
+_endVerse : int
+-----------------------------------
+Reference(book : string, chapter : int, verse : int)
+Reference(book : string, chapter : int, startVerse : int, endVerse : int)
+
+GetDisplayText() : string
+
+
+
+REFLECTING
+
+Encapsulation is the concept of restricting direct access to certain components of a program. In other words, by using the keyword private, we can hide certain attributes or methods from other parts of the program. This ensures that these components cannot be accessed or modified directly. The idea is that they must be accessed through specific methods.
+
+There are two main benefits of encapsulation:
+
+Minimizing interdependence between different parts of the program, making it easier to maintain and modify.
+Protecting the program from breaking after changes or updates, as the internal implementation details are hidden.
+
+For example, in my Scripture Memorizer program, I have an attribute _isHidden in the Word class. This Boolean variable can only be accessed through the method IsHidden(). The IsHidden() method acts as a controlled gateway, allowing external parts of the program to check whether the word is hidden without exposing the private _isHidden attribute directly.
+
+In the same way, in the Scripture class, the method IsCompletelyHidden() uses the IsHidden() method from the Word class to determine if all words in the scripture are hidden. This demonstrates how encapsulation allows for structured and controlled access to private variables across different parts of the program.
+
+Here is the code example:
+
+Word Class:
+
+private bool _isHidden;
+
+public bool IsHidden()
+{
+    return _isHidden;
+}
+
+
+Scripture Class:
+
+public bool IsCompletelyHidden()
+{
+    return _words.All(word => word.IsHidden());
+}
