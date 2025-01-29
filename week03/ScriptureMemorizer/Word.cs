@@ -25,7 +25,7 @@ public class Word
         _isHidden = false;
     }
 
-    // Methor do check if the word is hidden or not
+    // Methor to check if the word is hidden or not
     public bool IsHidden()
     {
         return _isHidden;

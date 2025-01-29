@@ -1,0 +1,44 @@
+Design - Youtube video tracking Program
+
+Author: Adson Mettler do Nascimento
+Course: Programming with Classes - C#
+Class: Week 04 Encapsulation - 2025-01-28
+
+Scripture Memorizer Program (Design)
+
+
+Video (Class)
+
+Attributes:
+------------------------------------------------
+_title : string (To store the title of the video)
+_author : string (To store the author's name
+_length : int (To store the length of the video in seconds)
+_comments : List<Comments> (A list of comments associated to each video)
+
+Methods
+------------------------------------------------
+GetNumberOfComments() : int
+
+
+
+Comment (Class)
+
+Attributes:
+--------------------------------------------------
+_name : string (name of the person who made the comment)
+_textcomment : string (the comment text)
+
+Methods:
+--------------------------------------------------
+
+
+
+Main Program Logic:
+
+- Create a list of 3-4 videos with titles, authors, and lengths.
+- Add 3-4 comments for each video.
+
+- Iterate through the list of videos to display their details:
+	- Video title, author, length, number of comments.
+	- List all the comments for each video.
