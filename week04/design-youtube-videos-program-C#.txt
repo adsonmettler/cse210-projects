@@ -4,7 +4,39 @@ Author: Adson Mettler do Nascimento
 Course: Programming with Classes - C#
 Class: Week 04 Encapsulation - 2025-01-28
 
+
+Main Program Logic:
+
+- Create a list of 3-4 videos with titles, authors, and lengths.
+- Add 3-4 comments for each video.
+
+- Iterate through the list of videos to display their details:
+	- Video title, author, length, number of comments.
+	- List all the comments for each video.
+
+
+
 Scripture Memorizer Program (Design)
+
+
+Comments (Class)
+
+Attributes:
+--------------------------------------------------
+_name : string (name of the person who made the comment)
+_textcomment : string (the comment text)
+
+
+Constructor
+--------------------------------------------------
+public Comments(string name, string textcomment)
+
+
+Getters and Setters
+--------------------------------------------------
+public string Name
+public string TextComment
+
 
 
 Video (Class)
@@ -16,29 +48,36 @@ _author : string (To store the author's name
 _length : int (To store the length of the video in seconds)
 _comments : List<Comments> (A list of comments associated to each video)
 
+
+Constructor
+------------------------------------------------
+Video(title, author, length) : 
+
+
+Getters and Setters
+------------------------------------------------
+public string Title
+public string Author
+public string Length
+public List<Comments> Comments
+
 Methods
 ------------------------------------------------
 GetNumberOfComments() : int
+AddComment() : void
 
 
 
-Comment (Class)
 
-Attributes:
---------------------------------------------------
-_name : string (name of the person who made the comment)
-_textcomment : string (the comment text)
+PROGRAM Output:
 
-Methods:
---------------------------------------------------
+Title: [Video Title]
+Author: [Video Author]
+Length: [Video Length] seconds
+Number of Comments: [Number of Comments]
+
+Comments:
+[Name]: [Comment Text]
+[Name]: [Comment Text]
 
 
-
-Main Program Logic:
-
-- Create a list of 3-4 videos with titles, authors, and lengths.
-- Add 3-4 comments for each video.
-
-- Iterate through the list of videos to display their details:
-	- Video title, author, length, number of comments.
-	- List all the comments for each video.

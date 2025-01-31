@@ -13,7 +13,7 @@
             _textcomment = textcomment;
         }
 
-        // Public properties (Getters and Setters)
+        // (Getters and Setters)
         public string Name
         {
             get { return _name; }

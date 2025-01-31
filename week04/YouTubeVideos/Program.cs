@@ -4,28 +4,28 @@ class Program
 {
     static void Main(string[] args)
     {
-        // List to store videos
+            // List to store videos 
             List<Video> videos = new List<Video>();
 
-            // Creating sample videos
-            Video video1 = new Video("How to Cook Pasta", "Chef John", 600);
-            Video video2 = new Video("The Secrets of Space", "Dr. Smith", 1200);
-            Video video3 = new Video("Learn C# in 10 Minutes", "Code Academy", 900);
+            // Creating sample videos (Instantiation)
+            Video video1 = new Video("The Film Look for ANY Camera", "Peter McKinnon", 265);
+            Video video2 = new Video("the ONLY way to run Deepseek...", "NetworkChuck", 718);
+            Video video3 = new Video("Project MINI RACK - a Homelab Revolution!", "Jeff Geerling", 900);
 
-            // Adding comments to the first video
-            video1.AddComment(new Comments("Alice", "This is so helpful!"));
-            video1.AddComment(new Comments("Bob", "Great recipe, I loved it!"));
-            video1.AddComment(new Comments("Charlie", "Very detailed, thanks!"));
+            // Adding comments to the first video (Instantiation)
+            video1.AddComment(new Comments("Cao024", "Gotta show the results of using it in the vid Pete!"));
+            video1.AddComment(new Comments("jakubphotography", "We need a 135 vs Shortstache filter comparison video!"));
+            video1.AddComment(new Comments("Synmomusic", "Do you have any examples of photos shot with these filters?"));
 
-            // Adding comments to the second video
-            video2.AddComment(new Comments("Dave", "Mind-blowing facts!"));
-            video2.AddComment(new Comments("Eve", "Can't wait to see more videos."));
-            video2.AddComment(new Comments("Frank", "Well explained!"));
+            // Adding comments to the second video (Instantiation)
+            video2.AddComment(new Comments("tubularjoint", "Deepseek recommended your channel for cybersecurity. I checked this morning"));
+            video2.AddComment(new Comments("EyosiB", "I'm running 14b on my M3 pro 18GB RAM 😊🎉"));
+            video2.AddComment(new Comments("jochemw97", "Quick summary of every info we need without dragging it to 30 mins... Well done! Very informative and useful :)"));
 
-            // Adding comments to the third video
-            video3.AddComment(new Comments("Grace", "I finally understand C# now!"));
-            video3.AddComment(new Comments("Hank", "Very concise and clear."));
-            video3.AddComment(new Comments("Ivy", "Amazing tutorial, thank you!"));
+            // Adding comments to the third video (Instantiation)
+            video3.AddComment(new Comments("TechnoTime", "Thanks for letting me join in on the (mini) revolution!"));
+            video3.AddComment(new Comments("HardwareHaven", "Great video! I can’t wait to try out the lab stack mini stuff — it looks so awesome!"));
+            video3.AddComment(new Comments("Krogren", "This is exactly what I've been looking for and trying to figure out what to build! Thanks for sharing the project."));
 
             // Adding videos to the list
             videos.Add(video1);
