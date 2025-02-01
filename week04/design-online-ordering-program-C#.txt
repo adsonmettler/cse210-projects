@@ -1,0 +1,136 @@
+Design - Online Ordering Program
+
+Author: Adson Mettler do Nascimento
+Course: Programming with Classes - C#
+Class: Week 04 Encapsulation - 2025-01-30
+
+
+Main Program Logic:
+
+Create 2 orders, each with 2-3 products and a customer.
+Assign a shipping address to each customer.
+Display the packing label for each order (product names and IDs).
+Display the shipping label for each order (customer name and address).
+Display the total price of each order (including shipping costs).
+
+
+Online Ordering Program (Design)
+
+
+Address (Class)
+
+Attributes:
+--------------------------------------------------
+_street : string (Street address)
+_city : string (City)
+_stateOrProvince : string (State or province)
+_country : string (Country)
+
+Constructor
+--------------------------------------------------
+Address(street, city, stateOrProvince, country)
+
+Getters and Setters
+--------------------------------------------------
+public string Street
+public string City
+public string StateOrProvince
+public string Country
+
+Methods:
+--------------------------------------------------
+IsInUSA() : bool - Returns true if the country is "USA"
+GetFullAddress() : string - Returns the full address formatted as a string
+
+
+
+Customer (Class)
+
+Attributes:
+------------------------------------------------
+_name : string (Customer name)
+_address : Address (Customer’s address)
+
+Constructor
+------------------------------------------------
+Customer(name, address)
+
+Getters and Setters
+------------------------------------------------
+public string Name
+public Address Address
+
+Methods
+------------------------------------------------
+LivesInUSA() : bool - Calls IsInUSA() from the Address class
+
+
+
+Product (Class)
+
+Attributes:
+------------------------------------------------
+_name : string (Product name)
+_productId : string (Product ID)
+_pricePerUnit : double (Price per unit)
+_quantity : int (Quantity ordered)
+
+Constructor
+------------------------------------------------
+Product(name, productId, pricePerUnit, quantity)
+
+Getters and Setters
+------------------------------------------------
+public string Name
+public string ProductId
+public double PricePerUnit
+public int Quantity
+
+Methods
+------------------------------------------------
+private GetTotalCost() : double - Returns the total cost of the product (pricePerUnit * quantity)
+
+
+
+Order (Class)
+
+Attributes:
+------------------------------------------------
+_products : List<Product> (List of products in the order)
+private _customer : Customer (Customer who placed the order)
+
+Constructor
+------------------------------------------------
+Order(customer)
+
+Getters and Setters
+------------------------------------------------
+public List<Product> Products
+public Customer Customer
+
+Methods
+------------------------------------------------
+AddProduct(Product product) : void - Adds a product to the order
+private GetTotalPrice() : double - Sums up all product costs and adds the shipping cost (based on customer location)
+GetPackingLabel() : string - Returns a list of product names and their IDs
+GetShippingLabel() : string - Returns the customer’s name and full address
+
+
+
+PROGRAM Output:
+
+Packing Label:
+Name: [Product Name]
+ID: [Product ID]
+Price: [Product Price] Dollars
+Number of Items: [Number of Product Items]
+
+Shipping Label:
+Street: [Street address]
+City: [City address]
+State/Province: [State or Province address]
+Country: [Country address]
+
+Total Price:
+[price] * [Number of Items]: [Total Price]
+
