@@ -88,7 +88,7 @@ public int Quantity
 
 Methods
 ------------------------------------------------
-private GetTotalCost() : double - Returns the total cost of the product (pricePerUnit * quantity)
+GetTotalCost() : double - Returns the total cost of the product (pricePerUnit * quantity)
 
 
 
@@ -111,7 +111,7 @@ public Customer Customer
 Methods
 ------------------------------------------------
 AddProduct(Product product) : void - Adds a product to the order
-private GetTotalPrice() : double - Sums up all product costs and adds the shipping cost (based on customer location)
+GetTotalPrice() : double - Sums up all product costs and adds the shipping cost (based on customer location)
 GetPackingLabel() : string - Returns a list of product names and their IDs
 GetShippingLabel() : string - Returns the customer’s name and full address
 
@@ -130,7 +130,5 @@ Street: [Street address]
 City: [City address]
 State/Province: [State or Province address]
 Country: [Country address]
-
-Total Price:
-[price] * [Number of Items]: [Total Price]
+Total Price: [price] * [Number of Items]: [Total Price]
 
