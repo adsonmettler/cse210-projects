@@ -18,7 +18,7 @@ class Program
             Order order2 = new Order(customer2);
 
             // Create and Add Products to Order 1
-            order1.AddProduct(new Product("Laptop - ThinkPad", "P1001", 999.99, 1));
+            order1.AddProduct(new Product("ThinkPad X1 Carbon (Laptop)", "P1001", 999.99, 1));
             order1.AddProduct(new Product("Mouse", "P1002", 25.50, 2));
 
             // Create and Add Products to Order 2
