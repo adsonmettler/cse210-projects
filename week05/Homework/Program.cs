@@ -5,20 +5,31 @@ class Program
     static void Main(string[] args)
     {
         
-        Book book1 = new Book();
+        Assignment assignment1 = new Assignment();
 
-        book1.SetAuthor("Adson");
-        book1.SetTitle("Lord of The Ring");
+        assignment1.SetStudentName("Adson Mettler");
+        assignment1.SetTopic("Multiplication");
 
         
-        Console.WriteLine(book1.GetBookInfo());
+        Console.WriteLine(assignment1.GetSummary());
 
-        PictureBook book2 = new PictureBook();
+        MathAssignment assignment2 = new MathAssignment();
 
-        book2.SetAuthor("Beatriz");
-        book2.SetIllustrator("Adson");
-        book2.SetTitle("Comic Sofia's stories");
+        assignment2.SetStudentName("Roberto Rodriguez");
+        assignment2.SetTopic("Fractions");
+        assignment2.SetTextBookSection("Section 7.3");
+        assignment2.SetProblem("Problem 8-19");
 
-        Console.WriteLine(book2.GetBookInfo());
+        Console.WriteLine(assignment2.GetHomeworkList());
+
+
+        WritingAssigment assignment3 = new WritingAssigment();
+
+        assignment3.SetStudentName("Mary Waters");
+        assignment3.SetTopic("European History");
+        assignment3.SetTitle("The Cause of World War II by Mary Waters");
+
+        Console.WriteLine(assignment3.GetWritingInformation());
+
     }
 }
