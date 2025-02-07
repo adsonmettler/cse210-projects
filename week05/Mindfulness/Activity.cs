@@ -1,12 +1,11 @@
-
 using System;
 using System.Threading;
 
 public abstract class Activity
 {
-    protected string Name;
-    protected string Description;
-    protected int Duration;
+    private string Name;
+    private string Description;
+    private int Duration;
 
     public Activity(string name, string description)
     {
@@ -19,8 +18,7 @@ public abstract class Activity
         Console.WriteLine($"\nStarting {Name}...");
         Console.WriteLine(Description);
         Console.Write("\nEnter duration (in seconds): ");
-        
-        // Get user input for duration
+
         if (int.TryParse(Console.ReadLine(), out int duration))
         {
             Duration = duration;
@@ -31,27 +29,27 @@ public abstract class Activity
         }
 
         Console.WriteLine("\nPrepare to begin...");
-        ShowSpinner(3); // Show a spinner for 3 seconds
+        StartSpinner(3);
     }
 
     public void DisplayEndingMessage()
     {
         Console.WriteLine("\nGreat job! You've completed the activity.");
         Console.WriteLine($"You completed {Name} for {Duration} seconds.");
-        ShowSpinner(3);
+        StartSpinner(3);
     }
 
-    protected void ShowCountdown(int seconds)
+    private void ShowCountdown(int seconds)
     {
         for (int i = seconds; i > 0; i--)
         {
-            Console.Write($"\rStarting in {i}...  ");
+            Console.Write($"\r{i}...  ");
             Thread.Sleep(1000);
         }
-        Console.WriteLine("\n");
+        Console.WriteLine();
     }
 
-    protected void ShowSpinner(int seconds)
+    private void ShowSpinner(int seconds)
     {
         string[] spinner = { "|", "/", "-", "\\" };
         for (int i = 0; i < seconds * 4; i++)
@@ -61,6 +59,11 @@ public abstract class Activity
         }
         Console.WriteLine("\n");
     }
+
+    protected void StartCountdown(int seconds) => ShowCountdown(seconds);
+    protected void StartSpinner(int seconds) => ShowSpinner(seconds);
+
+    protected int GetDuration() => Duration;
 
     public abstract void Run();
 }

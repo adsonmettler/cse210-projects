@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.Threading;
@@ -26,24 +25,27 @@ public class ReflectingActivity : Activity
         "How can you keep this experience in mind in the future?"
     };
 
-    public ReflectingActivity() : base("Reflecting Activity", 
-        "This activity will help you reflect on times in your life when you have shown strength and resilience.") { }
+    public ReflectingActivity() 
+        : base("Reflecting Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience.") { }
 
     public override void Run()
     {
         DisplayStartingMessage();
         Random random = new Random();
+        
         Console.WriteLine("\nThink about the following prompt:");
         Console.WriteLine(Prompts[random.Next(Prompts.Count)]);
 
-        ShowSpinner(5); // Pause for 5 seconds
+        StartSpinner(5);
 
         int elapsedTime = 0;
-        while (elapsedTime < Duration)
+        int duration = GetDuration();
+
+        while (elapsedTime < duration)
         {
-            Console.Write("\n" + Questions[random.Next(Questions.Count)] + " ");
-            ShowSpinner(5); // Pause for 5 seconds
-            elapsedTime += 5;
+            Console.Write(" " + Questions[random.Next(Questions.Count)] + "\n");
+            StartSpinner(10);
+            elapsedTime += 10;
         }
 
         DisplayEndingMessage();
