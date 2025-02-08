@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Threading;
 
 public class ListingActivity : Activity
@@ -19,26 +20,28 @@ public class ListingActivity : Activity
     {
         DisplayStartingMessage();
         Random random = new Random();
-        
-        Console.WriteLine("\nPrompt: " + Prompts[random.Next(Prompts.Count)]);
 
-        StartCountdown(5);
+        Console.WriteLine("\nPrompt: " + Prompts[random.Next(Prompts.Count)]);
+        StartCountdown(5); // Pause before user starts listing
 
         List<string> responses = new List<string>();
-        int elapsedTime = 0;
         int duration = GetDuration();
 
-        Console.WriteLine("\nStart listing items (press Enter after each item, type 'done' to finish):");
+        Console.WriteLine("\nStart listing items (press Enter after each item). You have limited time!");
 
-        while (elapsedTime < duration)
+        Stopwatch stopwatch = new Stopwatch();
+        stopwatch.Start();
+
+        while (stopwatch.Elapsed.TotalSeconds < duration)
         {
+            Console.Write("> ");
             string input = Console.ReadLine();
-            if (input.ToLower() == "done") break;
             responses.Add(input);
-            elapsedTime += 2; // Simulating time taken per entry
         }
 
-        Console.WriteLine($"\nYou listed {responses.Count} items.");
+        stopwatch.Stop();
+
+        Console.WriteLine($"\nTime's up! You listed {responses.Count} items.");
         DisplayEndingMessage();
     }
 }
