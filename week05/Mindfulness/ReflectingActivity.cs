@@ -30,20 +30,27 @@ public class ReflectingActivity : Activity
 
     public override void Run()
     {
+        Console.Clear(); // Clear menu before displaying the activity
         DisplayStartingMessage();
         Random random = new Random();
-        
-        Console.WriteLine("\nThink about the following prompt:");
-        Console.WriteLine(Prompts[random.Next(Prompts.Count)]);
 
-        StartSpinner(5);
+        // Show prompt and wait for user to press Enter
+        string prompt = Prompts[random.Next(Prompts.Count)];
+        Console.WriteLine($"\nThink about the following prompt:\n\"{prompt}\"");
+        Console.WriteLine("\nWhen you have something in mind, press Enter to continue...");
+        Console.ReadLine(); // Wait for user input
 
+        Console.Clear(); // Clear prompt before showing reflection questions
+
+        // Start showing reflection questions
         int elapsedTime = 0;
         int duration = GetDuration();
 
+        Console.WriteLine("\nNow, consider these questions as you reflect:\n");
+
         while (elapsedTime < duration)
         {
-            Console.Write(" " + Questions[random.Next(Questions.Count)] + "\n");
+            Console.Write("" + Questions[random.Next(Questions.Count)] + "\n");
             StartSpinner(10);
             elapsedTime += 10;
         }

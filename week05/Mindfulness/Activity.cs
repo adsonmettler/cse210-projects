@@ -28,12 +28,16 @@ public abstract class Activity
             Duration = 30; // Default to 30 seconds
         }
 
+        Console.Clear(); // Clears
+
         Console.WriteLine("\nPrepare to begin...");
         StartSpinner(3);
+        Console.Clear(); // Clears
     }
 
     public void DisplayEndingMessage()
     {
+        Console.Clear(); // Clears
         Console.WriteLine("\nGreat job! You've completed the activity.");
         Console.WriteLine($"You completed {Name} for {Duration} seconds.");
         StartSpinner(3);

@@ -6,6 +6,8 @@ class Program
     {
         while (true)
         {
+            Console.Clear(); // Clears previous activity screen before displaying menu
+
             Console.WriteLine("\nMenu Options:");
             Console.WriteLine("1. Start Breathing Activity");
             Console.WriteLine("2. Start Reflecting Activity");
@@ -14,6 +16,7 @@ class Program
             Console.Write("Please, select an option (type a number): ");
 
             string choice = Console.ReadLine();
+            Console.Clear(); // Clears menu once an activity is selected
 
             switch (choice)
             {
