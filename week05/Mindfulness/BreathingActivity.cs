@@ -20,7 +20,7 @@ public class BreathingActivity : Activity
             Console.WriteLine("Breathe out...");
             StartCountdown(6);
 
-            elapsedTime += 10; // 4 sec in + 4 sec out
+            elapsedTime += 10; // 4 sec in + 6 sec out
         }
 
         DisplayEndingMessage();

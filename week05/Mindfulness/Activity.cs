@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 
+// Abstract Method
 public abstract class Activity
 {
     private string Name;
@@ -64,6 +65,7 @@ public abstract class Activity
         Console.WriteLine("\n");
     }
 
+    // Setters
     protected void StartCountdown(int seconds) => ShowCountdown(seconds);
     protected void StartSpinner(int seconds) => ShowSpinner(seconds);
 

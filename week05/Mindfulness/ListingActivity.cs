@@ -32,6 +32,7 @@ public class ListingActivity : Activity
         Stopwatch stopwatch = new Stopwatch();
         stopwatch.Start();
 
+        // Loop to allow user input items on a list
         while (stopwatch.Elapsed.TotalSeconds < duration)
         {
             Console.Write("> ");
