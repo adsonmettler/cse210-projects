@@ -23,8 +23,10 @@ public class ReflectingActivity : Activity
         "How can you keep this experience in mind in the future?"
     };
 
-    public ReflectingActivity() 
-        : base("Reflecting Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience.") { }
+    public ReflectingActivity() : base("Reflecting Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience.")
+        {
+
+        }
 
     public override void Run()
     {
