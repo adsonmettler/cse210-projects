@@ -112,45 +112,62 @@ public class GoalManager
 
     public void LoadGoals()
     {
-        if (!File.Exists("goals.txt"))
+        Console.Write("\nWelcome to your Eternal Quest!\n ");
+        Console.Write("\nEnter the filename to load goals and press enter,\n");
+        Console.Write("if there is no file to load press enter: ");
+        string filename = Console.ReadLine();
+
+        if (!File.Exists(filename))
         {
             Console.WriteLine("No saved goals found.");
             return;
         }
 
         _goals.Clear();
-        using (StreamReader reader = new StreamReader("goals.txt"))
-        {
-            _score = int.Parse(reader.ReadLine());
-            string line;
-            while ((line = reader.ReadLine()) != null)
-            {
-                string[] parts = line.Split(',');
-                string type = parts[0];
-                string name = parts[1];
-                string description = parts[2];
-                int points = int.Parse(parts[3]);
+        string[] lines = File.ReadAllLines(filename);
+        if (lines.Length == 0) return;
 
-                if (type == "SimpleGoal")
+        _score = int.Parse(lines[0]);
+        for (int i = 1; i < lines.Length; i++)
+        {
+            string[] parts = lines[i].Split(',');
+            string type = parts[0].Trim();
+            string name = parts[1].Trim();
+            string description = parts[2].Trim();
+            
+            if (!int.TryParse(parts[3].Trim(), out int points))
+            {
+                Console.WriteLine($"Error parsing points from line: {lines[i]}");
+                continue;
+            }
+
+            if (type == "SimpleGoal")
+            {
+                bool isComplete = bool.Parse(parts[4].Trim());
+                _goals.Add(new SimpleGoal(name, description, points));
+            }
+            else if (type == "EternalGoal")
+            {
+                _goals.Add(new EternalGoal(name, description, points));
+            }
+            else if (type == "ChecklistGoal")
+            {
+                if (int.TryParse(parts[4].Trim(), out int amountCompleted) &&
+                    int.TryParse(parts[5].Trim(), out int target) &&
+                    int.TryParse(parts[6].Trim(), out int bonus))
                 {
-                    bool isComplete = bool.Parse(parts[4]);
-                    _goals.Add(new SimpleGoal(name, description, points));
-                }
-                else if (type == "EternalGoal")
-                {
-                    _goals.Add(new EternalGoal(name, description, points));
-                }
-                else if (type == "ChecklistGoal")
-                {
-                    int amountCompleted = int.Parse(parts[4]);
-                    int target = int.Parse(parts[5]);
-                    int bonus = int.Parse(parts[6]);
                     _goals.Add(new ChecklistGoal(name, description, points, target, bonus));
+                }
+                else
+                {
+                    Console.WriteLine($"Error parsing checklist goal details from line: {lines[i]}");
                 }
             }
         }
         Console.WriteLine("Goals loaded successfully!");
     }
+
+
 
     public int GetScore()
     {
