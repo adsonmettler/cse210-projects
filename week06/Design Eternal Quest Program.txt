@@ -1,0 +1,57 @@
+
+Goal Class
+
+_name
+_points
+-----------------
+Goal (string name, int points)
+
+GetName
+SetName
+GetPoints
+SetPoints
+
+
+
+SimpleGoal Class
+
+List<string> SimpleGoalList
+---------------
+
+
+
+
+EternalGoal Class
+
+
+----------------
+
+
+
+ChecklistGoal Class
+
+
+_description : string
+_subgoalsnumber : int
+_subpoints : int
+
+-----------------
+
+GetDescription()
+SetDescription()
+GetSubgoalsNumber()
+SetSubgoalsNumber()
+GetSubpoints()
+SetSubpoints()
+
+
+GoalManager Class
+
+
+------------
+
+SaveGoal()
+LoadGoal()
+RecordGoal()
+
+
