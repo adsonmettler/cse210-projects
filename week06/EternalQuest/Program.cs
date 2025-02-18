@@ -35,7 +35,7 @@ class Program
                         break;
                     case "2":
                         goalManager.ListGoalNames();
-                        goalManager.ListGoalDetails();
+                        //goalManager.ListGoalDetails();
                         break;
                     case "3":
                         goalManager.SaveGoals();

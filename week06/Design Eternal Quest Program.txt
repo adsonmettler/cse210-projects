@@ -3,7 +3,13 @@ Goal Class
 
 _name
 _points
------------------
+--------------------
+RecordEvent() : void (Abstract)
+IsComplete() : bool (Abs
+GetDetailsString()
+
+GetStringRepresentation() : string (Abstract)
+
 Goal (string name, int points)
 
 GetName
@@ -15,9 +21,12 @@ SetPoints
 
 SimpleGoal Class
 
-List<string> SimpleGoalList
----------------
+_isComplete : bool
 
+---------------
+RecordEvent() : void (Override)
+IsComplete() : bool (Override)
+GetStringRepresentation() : string (Override)
 
 
 
@@ -35,6 +44,10 @@ _description : string
 _subgoalsnumber : int
 _subpoints : int
 
+_amountCompleted : int
+_target : int
+_bonus : int
+
 -----------------
 
 GetDescription()
@@ -47,11 +60,12 @@ SetSubpoints()
 
 GoalManager Class
 
-
+_goals : List<Goal>
+_score : int
 ------------
-
+CreateGoal()
 SaveGoal()
 LoadGoal()
-RecordGoal()
+RecordEvent()
 
 

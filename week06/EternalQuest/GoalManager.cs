@@ -1,4 +1,6 @@
 
+using System.Reflection;
+
 public class GoalManager
 {
     // Attributes
@@ -56,7 +58,7 @@ public class GoalManager
         switch (choice)
         {
             case "1":
-                newGoal = new SimpleGoal(name, description, points);
+                newGoal = new SimpleGoal(name, description, points, false);
                 break;
             case "2":
                 newGoal = new EternalGoal(name, description, points);
@@ -79,7 +81,7 @@ public class GoalManager
 
     public void RecordEvent()
     {
-        Console.WriteLine("Select a goal to record progress:");
+        Console.WriteLine("Select a goal (number) to record progress:");
         for (int i = 0; i < _goals.Count; i++)
         {
             Console.WriteLine($"{i + 1}. {_goals[i].GetDetailsString()}");
@@ -99,24 +101,50 @@ public class GoalManager
 
     public void SaveGoals()
     {
-        using (StreamWriter writer = new StreamWriter("goals.txt"))
+        string directoryPath = @"C:\adson-root\byu-software-dev\cse210-projects\week06\EternalQuest\bin\Debug\net8.0\";
+
+        Console.Write("Enter the filename (without extension): ");
+        string userFileName = Console.ReadLine()?.Trim();
+
+        // Validate input and ensure .txt extension
+        if (string.IsNullOrWhiteSpace(userFileName))
         {
-            writer.WriteLine(_score);
-            foreach (var goal in _goals)
-            {
-                writer.WriteLine(goal.GetStringRepresentation());
-            }
+            Console.WriteLine("Invalid filename. Using default: goals.txt");
+            userFileName = "goals.txt";
         }
-        Console.WriteLine("Goals saved successfully!");
+        else
+        {
+            userFileName += ".txt";
+        }
+
+        string filePath = Path.Combine(directoryPath, userFileName);
+
+        try
+        {
+            using (StreamWriter writer = new StreamWriter(filePath))
+            {
+                writer.WriteLine(_score);
+                foreach (var goal in _goals)
+                {
+                    writer.WriteLine(goal.GetStringRepresentation());
+                }
+            }
+            Console.WriteLine($"Goals saved successfully in: {filePath}");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error saving goals: {ex.Message}");
+        }
     }
+
 
     public void LoadGoals()
     {
         Console.Write("\nWelcome to your Eternal Quest!\n ");
         Console.Write("\nEnter the filename to load goals and press enter,\n");
         Console.Write("if there is no file to load press enter: ");
-        string filename = Console.ReadLine();
-
+        //string filename = Console.ReadLine();
+        string filename = @"C:\adson-root\byu-software-dev\cse210-projects\week06\EternalQuest\bin\Debug\net8.0\goals.txt";
         if (!File.Exists(filename))
         {
             Console.WriteLine("No saved goals found.");
@@ -124,6 +152,7 @@ public class GoalManager
         }
 
         _goals.Clear();
+
         string[] lines = File.ReadAllLines(filename);
         if (lines.Length == 0) return;
 
@@ -141,16 +170,16 @@ public class GoalManager
                 continue;
             }
 
-            if (type == "SimpleGoal")
+            if (type == "Simple Goal")
             {
                 bool isComplete = bool.Parse(parts[4].Trim());
-                _goals.Add(new SimpleGoal(name, description, points));
+                _goals.Add(new SimpleGoal(name, description, points, isComplete));
             }
-            else if (type == "EternalGoal")
+            else if (type == "Eternal Goal")
             {
                 _goals.Add(new EternalGoal(name, description, points));
             }
-            else if (type == "ChecklistGoal")
+            else if (type == "Checklist Goal")
             {
                 if (int.TryParse(parts[4].Trim(), out int amountCompleted) &&
                     int.TryParse(parts[5].Trim(), out int target) &&
@@ -164,7 +193,7 @@ public class GoalManager
                 }
             }
         }
-        Console.WriteLine("Goals loaded successfully!");
+        
     }
 
 

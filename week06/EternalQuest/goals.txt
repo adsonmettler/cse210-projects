@@ -1,2 +1,2 @@
-100
-Simple Goal: Temple, Attend temple in February, 100, True
+400
+SimpleGoal: Temple, Attend temple in March, 100, True
