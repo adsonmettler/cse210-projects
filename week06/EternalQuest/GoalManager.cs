@@ -1,4 +1,11 @@
 
+// I added as exceeding with creativitity somethings, the clear
+// display feature to make it more user-friendly to see the menu
+// and than see only the list of goals once you choose it, and so
+// forth. I also created some error messages in case user inputs
+// not expected data or names, and mainly when user try to load a
+// file that has a not expected format.
+
 using System.Reflection;
 
 public class GoalManager
