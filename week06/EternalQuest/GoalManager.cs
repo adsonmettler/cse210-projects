@@ -139,56 +139,72 @@ public class GoalManager
 
 
     public void LoadGoals()
-    {
+{
         Console.Write("\nWelcome to your Eternal Quest!\n ");
         Console.Write("\nEnter the filename to load goals (or press enter to use default): ");
-        
+
         string filename = Console.ReadLine();
         string directoryPath = @"C:\adson-root\byu-software-dev\cse210-projects\week06\EternalQuest\bin\Debug\net8.0\";
 
-        
-        
-        // If the user enters nothing, use a default file location
         if (string.IsNullOrWhiteSpace(filename))
         {
-            filename = @"C:\adson-root\byu-software-dev\cse210-projects\week06\EternalQuest\bin\Debug\net8.0\goals.txt";
+            filename = "goals.txt"; // Default file name
         }
 
-        string filePath = Path.Combine(directoryPath, filename); // Combine the directory with the filename
+        string filePath = Path.Combine(directoryPath, filename);
 
-        // Verify if the file exists
         if (!File.Exists(filePath))
         {
             Console.WriteLine($"No saved goals found at: {filePath}");
             return;
         }
 
-
         string[] lines = File.ReadAllLines(filePath);
         if (lines.Length == 0) return;
 
-        _score = int.Parse(lines[0]);
+        _score = int.Parse(lines[0]); // First line is score
+        
         for (int i = 1; i < lines.Length; i++)
         {
-            string[] parts = lines[i].Split(new[] { ':', ',' }, StringSplitOptions.RemoveEmptyEntries);
-            string type = parts[0].Trim();
-            string name = parts[1].Trim();
-            string description = parts[2].Trim();
-            
-            if (!int.TryParse(parts[3].Trim(), out int points))
+            string line = lines[i];
+
+            // Separate type from the rest using the first `:` occurrence
+            int colonIndex = line.IndexOf(":");
+            if (colonIndex == -1)
             {
-                Console.WriteLine($"Error parsing points from line: {lines[i]}");
+                Console.WriteLine($"Error: Invalid format in line {i + 1}");
+                continue;
+            }
+
+            string type = line.Substring(0, colonIndex).Trim(); // Extract type
+            string remainingData = line.Substring(colonIndex + 1).Trim(); // Extract everything after `:`
+            
+            // Now split the remaining part by `,`
+            string[] parts = remainingData.Split(',', StringSplitOptions.RemoveEmptyEntries);
+            
+            if (parts.Length < 3)
+            {
+                Console.WriteLine($"Error: Not enough parts in line {i + 1}");
+                continue;
+            }
+
+            string name = parts[0].Trim();
+            string description = parts[1].Trim();
+
+            if (!int.TryParse(parts[2].Trim(), out int points))
+            {
+                Console.WriteLine($"Error parsing points from line: {line}");
                 continue;
             }
 
             if (type == "Simple Goal")
             {
-            if (!bool.TryParse(parts[4].Trim(), out bool isComplete))
-            {
-                Console.WriteLine($"Error parsing boolean value from line: {lines[i]}");
-                continue;
-            }
-            _goals.Add(new SimpleGoal(name, description, points, isComplete));
+                if (parts.Length < 4 || !bool.TryParse(parts[3].Trim().ToLower(), out bool isComplete))
+                {
+                    Console.WriteLine($"Error parsing boolean value from line: {line}");
+                    continue;
+                }
+                _goals.Add(new SimpleGoal(name, description, points, isComplete));
             }
             else if (type == "Eternal Goal")
             {
@@ -196,29 +212,28 @@ public class GoalManager
             }
             else if (type == "Checklist Goal")
             {
-                if (parts.Length < 7) 
+                if (parts.Length < 5)
                 {
-                    Console.WriteLine($"Error parsing checklist goal details from line: {lines[i]}");
+                    Console.WriteLine($"Error parsing checklist goal details from line: {line}");
                     continue;
                 }
 
-                string[] progressParts = parts[4].Trim().Split('/'); // Split "0/4" into ["0", "4"]
+                // Split "0/4" into ["0", "4"]
+                string[] progressParts = parts[3].Trim().Split('/');
 
-                if (progressParts.Length != 2 || 
-                    !int.TryParse(progressParts[0], out int amountCompleted) ||
-                    !int.TryParse(progressParts[1], out int target) ||
-                    !int.TryParse(parts[5].Trim(), out int bonus))
+                if (progressParts.Length != 2 ||
+                    !int.TryParse(progressParts[0].Trim(), out int amountCompleted) ||
+                    !int.TryParse(progressParts[1].Trim(), out int target) ||
+                    !int.TryParse(parts[4].Trim(), out int bonus))
                 {
-                    Console.WriteLine($"Error parsing checklist goal details from line: {lines[i]}");
+                    Console.WriteLine($"Error parsing checklist goal details from line: {line}");
                     continue;
                 }
 
                 _goals.Add(new ChecklistGoal(name, description, points, amountCompleted, target, bonus));
             }
-
         }
-        
-    }
+}
 
 
 
