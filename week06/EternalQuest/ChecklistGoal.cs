@@ -29,6 +29,13 @@ public class ChecklistGoal : Goal
     }
 
     // Getters
+
+    public override string GetDetailsString()
+    {
+        string checkBox = IsComplete() ? "[x]" : "[ ]";
+        return $"{checkBox} {_shortName}: {_description} ({_amountCompleted}/{_target}) ({_points} points)";
+
+    }
     
     public override string GetStringRepresentation()
     {
