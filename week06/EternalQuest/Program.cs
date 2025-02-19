@@ -9,7 +9,7 @@ class Program
             
 
             GoalManager goalManager = new GoalManager(); // Create instance of GoalManager
-            goalManager.LoadGoals(); // Load saved goals and points
+            // goalManager.LoadGoals(); // Load saved goals and points
 
             while (true)
             {

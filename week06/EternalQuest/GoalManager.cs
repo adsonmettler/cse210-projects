@@ -68,7 +68,7 @@ public class GoalManager
                 int target = int.Parse(Console.ReadLine());
                 Console.Write("Enter bonus points: ");
                 int bonus = int.Parse(Console.ReadLine());
-                newGoal = new ChecklistGoal(name, description, points, target, bonus);
+                newGoal = new ChecklistGoal(name, description, points, 0, target, bonus);
                 break;
             default:
                 Console.WriteLine("Invalid choice!");
@@ -104,20 +104,20 @@ public class GoalManager
         string directoryPath = @"C:\adson-root\byu-software-dev\cse210-projects\week06\EternalQuest\bin\Debug\net8.0\";
 
         Console.Write("Enter the filename (without extension): ");
-        string userFileName = Console.ReadLine()?.Trim();
+        string filename = Console.ReadLine()?.Trim();
 
         // Validate input and ensure .txt extension
-        if (string.IsNullOrWhiteSpace(userFileName))
+        if (string.IsNullOrWhiteSpace(filename))
         {
             Console.WriteLine("Invalid filename. Using default: goals.txt");
-            userFileName = "goals.txt";
+            filename = "goals.txt";
         }
         else
         {
-            userFileName += ".txt";
+            filename += ".txt";
         }
 
-        string filePath = Path.Combine(directoryPath, userFileName);
+        string filePath = Path.Combine(directoryPath, filename);
 
         try
         {
@@ -141,25 +141,36 @@ public class GoalManager
     public void LoadGoals()
     {
         Console.Write("\nWelcome to your Eternal Quest!\n ");
-        Console.Write("\nEnter the filename to load goals and press enter,\n");
-        Console.Write("if there is no file to load press enter: ");
-        //string filename = Console.ReadLine();
-        string filename = @"C:\adson-root\byu-software-dev\cse210-projects\week06\EternalQuest\bin\Debug\net8.0\goals.txt";
-        if (!File.Exists(filename))
+        Console.Write("\nEnter the filename to load goals (or press enter to use default): ");
+        
+        string filename = Console.ReadLine();
+        string directoryPath = @"C:\adson-root\byu-software-dev\cse210-projects\week06\EternalQuest\bin\Debug\net8.0\";
+
+        
+        
+        // If the user enters nothing, use a default file location
+        if (string.IsNullOrWhiteSpace(filename))
         {
-            Console.WriteLine("No saved goals found.");
+            filename = @"C:\adson-root\byu-software-dev\cse210-projects\week06\EternalQuest\bin\Debug\net8.0\goals.txt";
+        }
+
+        string filePath = Path.Combine(directoryPath, filename); // Combine the directory with the filename
+
+        // Verify if the file exists
+        if (!File.Exists(filePath))
+        {
+            Console.WriteLine($"No saved goals found at: {filePath}");
             return;
         }
 
-        _goals.Clear();
 
-        string[] lines = File.ReadAllLines(filename);
+        string[] lines = File.ReadAllLines(filePath);
         if (lines.Length == 0) return;
 
         _score = int.Parse(lines[0]);
         for (int i = 1; i < lines.Length; i++)
         {
-            string[] parts = lines[i].Split(',');
+            string[] parts = lines[i].Split(new[] { ':', ',' }, StringSplitOptions.RemoveEmptyEntries);
             string type = parts[0].Trim();
             string name = parts[1].Trim();
             string description = parts[2].Trim();
@@ -172,8 +183,12 @@ public class GoalManager
 
             if (type == "Simple Goal")
             {
-                bool isComplete = bool.Parse(parts[4].Trim());
-                _goals.Add(new SimpleGoal(name, description, points, isComplete));
+            if (!bool.TryParse(parts[4].Trim(), out bool isComplete))
+            {
+                Console.WriteLine($"Error parsing boolean value from line: {lines[i]}");
+                continue;
+            }
+            _goals.Add(new SimpleGoal(name, description, points, isComplete));
             }
             else if (type == "Eternal Goal")
             {
@@ -181,17 +196,26 @@ public class GoalManager
             }
             else if (type == "Checklist Goal")
             {
-                if (int.TryParse(parts[4].Trim(), out int amountCompleted) &&
-                    int.TryParse(parts[5].Trim(), out int target) &&
-                    int.TryParse(parts[6].Trim(), out int bonus))
-                {
-                    _goals.Add(new ChecklistGoal(name, description, points, target, bonus));
-                }
-                else
+                if (parts.Length < 7) 
                 {
                     Console.WriteLine($"Error parsing checklist goal details from line: {lines[i]}");
+                    continue;
                 }
+
+                string[] progressParts = parts[4].Trim().Split('/'); // Split "0/4" into ["0", "4"]
+
+                if (progressParts.Length != 2 || 
+                    !int.TryParse(progressParts[0], out int amountCompleted) ||
+                    !int.TryParse(progressParts[1], out int target) ||
+                    !int.TryParse(parts[5].Trim(), out int bonus))
+                {
+                    Console.WriteLine($"Error parsing checklist goal details from line: {lines[i]}");
+                    continue;
+                }
+
+                _goals.Add(new ChecklistGoal(name, description, points, amountCompleted, target, bonus));
             }
+
         }
         
     }

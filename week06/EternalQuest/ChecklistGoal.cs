@@ -9,12 +9,14 @@ public class ChecklistGoal : Goal
     private int _bonus;
 
     // Constructor
-    public ChecklistGoal(string name, string description, int points, int target, int bonus) : base(name, description, points)
+    public ChecklistGoal(string name, string description, int points, int amountCompleted, int target, int bonus) 
+        : base(name, description, points)
     {
-        _amountCompleted = 0;
+        _amountCompleted = amountCompleted;
         _target = target;
         _bonus = bonus;
     }
+
 
     // Overriden methods
     public override void RecordEvent()
