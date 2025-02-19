@@ -143,7 +143,19 @@ public class GoalManager
         Console.Write("\nWelcome to your Eternal Quest!\n ");
         Console.Write("\nEnter the filename to load goals (or press enter to use default): ");
 
-        string filename = Console.ReadLine();
+        string filename = Console.ReadLine()?.Trim();
+
+        // Validate input and ensure .txt extension
+        if (string.IsNullOrWhiteSpace(filename))
+        {
+            Console.WriteLine("Invalid filename. Using default: goals.txt");
+            filename = "goals.txt";
+        }
+        else
+        {
+            filename += ".txt";
+        }
+
         string directoryPath = @"C:\adson-root\byu-software-dev\cse210-projects\week06\EternalQuest\bin\Debug\net8.0\";
 
         if (string.IsNullOrWhiteSpace(filename))
