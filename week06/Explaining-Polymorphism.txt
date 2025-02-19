@@ -1,0 +1,38 @@
+
+Design - Eternal Quest Program
+
+Author: Adson Mettler do Nascimento
+Course: Programming with Classes - C#
+Class: Week 06 Polymorphism - 2025-02-18
+
+
+
+In programming there is a way to make one line of code have more than one different behavior that will depend on the context, this technique, or concept, is called polymorphism. To use polymorphism is basically the combination of Inheritance and Method Overriding. By using them together the program will make vary the behavior of a method according to the context.
+
+The benefits are several, it allows programmer to write code more structured in a way that makes easier to other programmers updated and debug, which is a great advantage for collaborative projects. This opens opportunities to scale your project, improve testing and debugging agility. And the end turns your code more dynamic.
+
+Here is an example from my own code. In the snippet below, I show a method called GetDetailsString in my parent Goal class. This method should display a standard format for Simple Goals and Eternal Goals, but not for Checklist Goals.
+
+To achieve this, I first added the virtual keyword to the method in my parent class. Then, in my child ChecklistGoals class, I overrode the GetDetailsString method using the override keyword. Check out my code below:
+
+
+public class Goals
+
+public virtual string GetDetailsString()
+    {
+        string checkBox = IsComplete() ? "[x]" : "[ ]";
+        return $"{checkBox} {_shortName}: {_description} ({_points} points)";
+    }
+
+
+public class ChecklistGoals : Goal
+
+public override string GetDetailsString()
+    {
+        string checkBox = IsComplete() ? "[x]" : "[ ]";
+        return $"{checkBox} {_shortName}: {_description} ({_amountCompleted}/{_target}) ({_points} points)";
+
+    }
+
+
+
