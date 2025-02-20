@@ -1,0 +1,72 @@
+Eternal Quest Program
+
+Author: Adson Mettler do Nascimento
+Course: Programming with Classes - C#
+Class: Week 07 Principles of programming with classes - 2025-02-19
+
+
+For each of the 4 principles of Programming with Classes, answer the following:
+
+Briefly define the principle.
+How did you use that principle in one of your programs.
+How did using that principle help that program become more flexible for future changes?
+
+Approaching the end of this course of Programming with Classes, I would like to thank for everyone who participate on the development and execution of this course. I was a really great learning experience.
+
+Here are the main principles that encompass the foundation on programming with classes:
+
+1. Abstraction
+
+Abstraction is the process of turning a complex idea into something simpler in terms of execution. One important advantage of applying abstraction in coding is creating a logical sequence of layers, making it easier to use the program.
+
+By creating and organizing objects inside objects with responsibilities, behaviors, and attributes in a way to get easier to and logical to use and update the program is main point of the ability of abstraction.
+
+In this way I can use this ability to simplify the way users will interact with my program and get the expected results from the program easily. For example, in my Mindfulness program user interact with each object and layer of the program by navigating through the menu I have created on the main program class, which communicates with the functions and methods I have created in other classes.
+
+2. Encapsulation
+
+Encapsulation is the concept of restricting direct access to certain components of a program. In other words, by using the keyword private, we can hide certain attributes or methods from other parts of the program. This ensures that these components cannot be accessed or modified directly. The idea is that they must be accessed through specific methods.
+
+For example, in my Scripture Memorizer program, I have an attribute _isHidden in the Word class. This Boolean variable can only be accessed through the method IsHidden(). The IsHidden() method acts as a controlled gateway, allowing external parts of the program to check whether the word is hidden without exposing the private _isHidden attribute directly.
+
+In the same way, in the Scripture class, the method IsCompletelyHidden() uses the IsHidden() method from the Word class to determine if all words in the scripture are hidden. This demonstrates how encapsulation allows for structured and controlled access to private variables across different parts of the program.
+
+Here is the code example:
+
+Word Class:
+
+private bool _isHidden;
+
+public bool IsHidden()
+{
+    return _isHidden;
+}
+
+
+Scripture Class:
+
+public bool IsCompletelyHidden()
+{
+    return _words.All(word => word.IsHidden());
+}
+
+
+3. Inheritance
+
+Inheritance allows a class to directly obtain the attributes and methods of another class without having to rewrite them. This improves code reusability, prevents redundancy, and makes the program more efficient.
+
+By structuring the program this way, it became more logically organized and easier to interpret, allowing me to test each class separately.
+
+For example, in my Mindfulness program in the Activity class I created a method to display the activity name and description. The BreathingActivity class, which inherits from Activity, can call these methods without needing to redefine them.
+
+This approach makes it seamless to extend functionality, as all derived classes can inherit and reuse these methods.
+
+
+4. Polymorphism
+
+Polymorphism is a technique that allows one line of code have more than one different behavior by depending on the given context. To use polymorphism is basically the combination of Inheritance and Method Overriding. By using them together the program will make vary the behavior of a method according to the context.
+
+To achieve this same effect in my code, on my Eternal Quest program for example, I first added the virtual keyword into the method in my parent class Goals. Then, in my child ChecklistGoals class, I overrode the GetDetailsString method using the override keyword.
+
+
+That is all four principles covered on my learning process during the programming with classes course. Thank you so much!
