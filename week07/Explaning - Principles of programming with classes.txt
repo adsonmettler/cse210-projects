@@ -29,7 +29,7 @@ Encapsulation is the concept of restricting direct access to certain components 
 
 For example, in my Scripture Memorizer program, I have an attribute _isHidden in the Word class. This Boolean variable can only be accessed through the method IsHidden(). The IsHidden() method acts as a controlled gateway, allowing external parts of the program to check whether the word is hidden without exposing the private _isHidden attribute directly.
 
-In the same way, in the Scripture class, the method IsCompletelyHidden() uses the IsHidden() method from the Word class to determine if all words in the scripture are hidden. This demonstrates how encapsulation allows for structured and controlled access to private variables across different parts of the program.
+In the same way, in the Scripture class, the method IsCompletelyHidden() uses the IsHidden() method from the Word class to determine if all words in the scripture are hidden. This demonstrates how encapsulation allows for structured and controlled access to private variables across different parts of the program. Facilitating future changes in the program without compromising the attributes already set.
 
 Here is the code example:
 
@@ -67,6 +67,8 @@ This approach makes it seamless to extend functionality, as all derived classes 
 Polymorphism is a technique that allows one line of code have more than one different behavior by depending on the given context. To use polymorphism is basically the combination of Inheritance and Method Overriding. By using them together the program will make vary the behavior of a method according to the context.
 
 To achieve this same effect in my code, on my Eternal Quest program for example, I first added the virtual keyword into the method in my parent class Goals. Then, in my child ChecklistGoals class, I overrode the GetDetailsString method using the override keyword.
+
+Through this principle it will be more dynamic and easier to add a totally new type of goal into the program, for example. With not major changes, basically only adding the new attributes and behaviors into this new child class.
 
 
 That is all four principles covered on my learning process during the programming with classes course. Thank you so much!
